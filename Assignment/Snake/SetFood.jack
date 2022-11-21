@@ -1,0 +1,65 @@
+class SetFood {
+    field Food food;
+    field int x, y;
+    field Array grid;
+
+    constructor SetFood new(int Rx, int Ry) {
+        let x = Rx;
+        let y = Ry;
+        let food = Food.new(x, y, 2);
+        return this;
+    }
+
+    // Dispose method
+    method void dispose(){
+        do food.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    // draw the food to x, y (2 < x, y < 511)
+    method void placeFood() {
+        var boolean eat;
+        var int randX, randY;
+
+        // don't place the food on top of a snake piece
+        let eat = false;
+        while( ~eat ) {
+            let randX = Random.randRange(x);
+            let randY = Random.randRange(y);
+            if( ~ checkOccupied(randX, randY) ) {
+                let eat = true;
+            }
+        }
+        let x = randX;
+        let y = randY;
+        return;
+    }
+
+    method void setOccupied(int x, int y, boolean occupied) {
+        var Array xGrid;
+        let xGrid = grid[x];
+        let xGrid[y] = occupied;
+        return;
+    }
+
+    method boolean checkOccupied(int x, int y) {
+        var int xOccupied;
+        let xOccupied = grid[x];
+        if( xOccupied[y] ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    method boolean checkFood(int Px, int Py) {
+        if( Px = x ) {
+            if( Py = y ) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

@@ -1,0 +1,30 @@
+class Food {
+field int x, y, size;
+
+    // Food
+
+    constructor Food new(int Fx, int Fy, int Fsize) {
+        let x = Fx;
+        let y = Fy;
+        let size = Fsize;
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, size);
+        return;
+    }
+
+    method void erace() {
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, size);
+        return;
+    }
+}

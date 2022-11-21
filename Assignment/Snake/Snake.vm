@@ -1,0 +1,277 @@
+function Snake.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push pointer 0
+call Snake.draw 1
+pop temp 0
+push pointer 0
+return
+function Snake.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Snake.draw 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Snake.erace 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Snake.moveUp 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 1
+push constant 2
+sub
+pop this 1
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+push constant 510
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 2
+add
+pop this 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveDown 0
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+add
+push constant 510
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 1
+push constant 2
+add
+pop this 1
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 2
+sub
+pop this 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Snake.over 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 1
+lt
+push this 1
+or
+push constant 1
+lt
+push this 0
+push this 2
+add
+or
+push constant 510
+gt
+push this 1
+push this 2
+add
+or
+push constant 510
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+pop this 3
+label IF_FALSE0
+push this 3
+return
+function Snake.posX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Snake.posY 0
+push argument 0
+pop pointer 0
+push this 1
+return
